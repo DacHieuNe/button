@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  padding: 200px; }
+
+.gray1 {
+  background-color: gray; }
+
+.gray2 {
+  background-color: lightgray; }
+
+.list {
+  width: 500px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0; }
+  .list .item {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px; }
+    .list .item-text, .list .item-btn {
+      width: 50%; }
+    .list .item-text h1 {
+      color: #8adfe1;
+      margin: 0;
+      font-weight: 500;
+      font-size: 24px; }
+    .list .item-btn button {
+      padding: 20px;
+      background-color: transparent;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      color: #fff;
+      cursor: pointer; }
+    .list .item-btn .green1 {
+      background-color: green; }
+    .list .item-btn .green2 {
+      background-color: lightgreen; }
+    .list .item-btn .red1 {
+      background-color: red; }
+
+/*# sourceMappingURL=text.css.map */
