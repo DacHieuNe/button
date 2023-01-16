@@ -6,7 +6,7 @@ function resLi(obj) {
 	const h1Element = liElement.querySelector("h1");
 	if(!h1Element) return null;
 	h1Element.textContent = obj.name;
-	h1Element.id = obj.id;
+	liElement.id = obj.id;
  	// Add event button
  	const finishButton = liElement.querySelector(".finish");
  	if(!finishButton) return null;
@@ -19,7 +19,7 @@ function resLi(obj) {
  	liElement.classList.add(liColor);
  	finishButton.classList.add(finishColor);
  	finishButton.textContent = finishText;	
- 	finishButton.addEventListener("click", () => {
+  	finishButton.addEventListener("click", () => {
  		const checkColor = liElement.dataset.status == "pending" ? "green1" : "green2";
  		const checkLiColor = liElement.dataset.status == "pending" ? "gray1" : "gray2";
  		const checkText = liElement.dataset.status == "pending" ? "Reset" : "Finish";	
@@ -28,11 +28,18 @@ function resLi(obj) {
  		liElement.classList.add(checkLiColor);
  		finishButton.classList.remove("green1", "green2");
  		finishButton.classList.add(checkColor);
- 		console.log(checkText);
  		finishButton.textContent = checkText;
+ 		const testCheck = JSON.parse(localStorage.getItem("data"));
+ 		const posDelete = testCheck.findIndex(e => e.id == liElement.id);
+ 		testCheck[posDelete].status = liElement.dataset.status;
+ 		localStorage.setItem("data",JSON.stringify(testCheck));
  	});
  	removeButton.addEventListener("click", () => {
  		liElement.remove();
+ 		const testCheck = JSON.parse(localStorage.getItem("data"));
+ 		const posDelete = testCheck.findIndex(e => e.id == liElement.id);
+ 		testCheck.splice(posDelete,1);
+ 		localStorage.setItem("data",JSON.stringify(testCheck));
  	});
 	return liElement;
 }
@@ -45,12 +52,25 @@ function renderList(list) {
 		ulElement.appendChild(liElement);
 	}
 }
-
+function getStorage() {
+	return JSON.parse(localStorage.getItem("data"));
+}
+// localStorage - Storage API
 (() => {
+	/*
 	const list = [
 		{id: 1, name: "Learn JS", status: "pending"},
 		{id: 2, name: "Learn Nodejs", status: "completed"},
 		{id: 3, name: "Learn GIT", status: "pending"},
 	];
+	*/
+	if(!localStorage.getItem("data") || JSON.parse(localStorage.getItem("data")).length == 0) {
+		localStorage.setItem("data",JSON.stringify([
+			{id: 1, name: "Learn JS", status: "pending"},
+			{id: 2, name: "Learn Nodejs", status: "completed"},
+			{id: 3, name: "Learn GIT", status: "pending"},
+			]));	
+	}
+	const list = getStorage();
 	renderList(list);
 })()
