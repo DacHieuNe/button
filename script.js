@@ -12,6 +12,7 @@ function resLi(obj) {
  	if(!finishButton) return null;
  	const removeButton = liElement.querySelector(".remove");
  	if(!removeButton) return null;
+ 	const editButton = liElement.querySelector(".edit");
  	 liElement.dataset.status = obj.status;
  	const finishColor = obj.status == "pending" ? "green2" : "green1";
  	const liColor = obj.status == "pending" ? "gray2" : "gray1";
@@ -41,12 +42,18 @@ function resLi(obj) {
  		testCheck.splice(posDelete,1);
  		localStorage.setItem("data",JSON.stringify(testCheck));
  	});
+ 	editButton.addEventListener("click", () => {
+ 		let formElement = document.querySelector("#form");
+ 		let formValue = formElement.querySelector("#form-value");
+ 		formValue.value = h1Element.textContent;
+ 		formElement.dataset.id = liElement.id;
+ 	});
 	return liElement;
 }
 function renderList(list) {
 	const ulElement = document.querySelector(".list");
 	if(!ulElement) return null;
-
+	ulElement.textContent = "";
 	for(let i of list) {
 		const liElement = resLi(i);
 		ulElement.appendChild(liElement);
@@ -64,13 +71,41 @@ function getStorage() {
 		{id: 3, name: "Learn GIT", status: "pending"},
 	];
 	*/
-	if(!localStorage.getItem("data") || JSON.parse(localStorage.getItem("data")).length == 0) {
-		localStorage.setItem("data",JSON.stringify([
-			{id: 1, name: "Learn JS", status: "pending"},
-			{id: 2, name: "Learn Nodejs", status: "completed"},
-			{id: 3, name: "Learn GIT", status: "pending"},
-			]));	
-	}
-	const list = getStorage();
+	let list = getStorage();
 	renderList(list);
+	let formElement = document.getElementById("form");
+	formElement.addEventListener("submit", (event) => {
+		event.preventDefault();
+		let check = !formElement.dataset.id ? true : false;
+		let formValue = formElement.querySelector("#form-value");
+		if(check) {
+			let obj = {
+				id: Date.now(),
+				name: formValue.value,
+				status: "pending"
+			}
+			if(!localStorage.getItem("data")) {
+				localStorage.setItem("data", JSON.stringify([obj]));
+			}else {
+				let arrTamp = JSON.parse(localStorage.getItem("data"));
+				arrTamp.push(obj);
+				localStorage.setItem("data", JSON.stringify(arrTamp));
+			}
+			list = getStorage();
+			renderList(list);
+		}else {
+			let arrTamp = JSON.parse(localStorage.getItem("data"));
+			arrTamp = arrTamp.map(e => {
+				if(e.id == formElement.dataset.id) {
+					e.name = formValue.value;
+				}
+				return e;
+			});
+			localStorage.setItem("data", JSON.stringify(arrTamp));
+			list = getStorage();
+			renderList(list);
+		}
+		formElement.reset();
+		delete formElement.dataset.id;
+	});
 })()
