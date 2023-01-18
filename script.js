@@ -108,4 +108,77 @@ function getStorage() {
 		formElement.reset();
 		delete formElement.dataset.id;
 	});
-})()
+})();
+
+function getAllItem() {
+	return document.querySelectorAll(".list li");
+}
+function checkRes(item, searchValue) {
+	if(searchValue == "") return true;
+	let h1Element = item.querySelector(".item-text h1");
+	return h1Element.textContent.toLowerCase().includes(searchValue.toLowerCase());
+}
+function solveItem(allItem ,searchValue) {
+	if(allItem.length == 0) return null;
+	for(let i of allItem) {
+		const res = checkRes(i, searchValue);
+		!res ? i.style.display = "none" : i.style.display = "flex";
+	}
+}
+function checkFilter(item, filterValue) {
+	if(filterValue == "all") return true;
+	return item.dataset.status == filterValue;
+}
+function filterItem(allItem, filterValue) {
+	if(allItem.length == 0) return null;
+	for(let i of allItem) {
+		const res = checkFilter(i, filterValue);
+		!res ? i.style.display = "none" : i.style.display = "flex";
+	}
+}
+function handleItem(searchValue, filterValue) {
+	var allItem = getAllItem();
+	var handleURL = new URL(window.location);
+	handleURL.searchParams.set("searchValue" , searchValue);
+	handleURL.searchParams.set("filterValue" , filterValue);
+	window.history.pushState({}, "", handleURL);
+	if(filterValue == "all") {
+		solveItem(allItem, searchValue);
+		return;
+	}
+	if(searchValue == "") {
+		filterItem(allItem, filterValue);
+		return;
+	}
+	var arrItem = Array.from(allItem).filter(e => e.dataset.status == filterValue);
+	if(arrItem.length == 0) {
+		Array.from(allItem).forEach(e => {
+			e.style.display = "none";
+		});
+		return;
+	}
+	var arrItem2 = Array.from(allItem).filter(e => e.dataset.status != filterValue);
+	arrItem.forEach(e => {
+		e.style.display = "flex";
+	});
+	arrItem2.forEach(e => {
+		e.style.display = "none";
+	})
+	solveItem(arrItem, searchValue);
+}
+(() => {
+	let searchInput = document.querySelector("#searchInput");
+	let filterInput = document.querySelector(".select");
+	let handleURL = new URL(window.location);
+	let handleSearchValue = handleURL.searchParams.get("searchValue");
+	let handleFilterValue = handleURL.searchParams.get("filterValue")
+	searchInput.value = handleSearchValue;
+	filterInput.value = handleFilterValue;
+	handleItem(handleSearchValue, handleFilterValue);
+	searchInput.addEventListener("input", () => {
+		handleItem(searchInput.value, filterInput.value);
+	});
+	filterInput.addEventListener("change", () => {
+		handleItem(searchInput.value, filterInput.value);
+	});
+})();

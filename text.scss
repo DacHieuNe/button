@@ -54,31 +54,28 @@ body {
 
 form {
   width: 700px; }
-
-form input {
-  box-sizing: border-box;
-  margin-bottom: 10px;
-  width: 100%;
-  padding: 20px; }
-
-form button {
-  margin-bottom: 10px; }
-
+  form input {
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 20px; }
+  form button {
+    margin-bottom: 10px; }
 .search {
-  height: 50px; }
-  .search button {
-    box-sizing: border-box;
-    padding: 0;
-    width: 5%;
-    height: 30px; }
-  .search input {
-    box-sizing: border-box;
-    width: 68%;
-    height: 30px; }
-
+	height: 50px;
+	button {
+		box-sizing: border-box;
+		padding: 0;
+		width: 5%;
+		height: 30px;
+	}
+	input {
+		box-sizing: border-box;
+		width: 68%;
+		height: 30px;
+	}
+}
 .filter {
-  margin-bottom: 10px; }
-
-/*# sourceMappingURL=text.css.map */
-
+	margin-bottom: 10px;
+}
 /*# sourceMappingURL=text.css.map */
