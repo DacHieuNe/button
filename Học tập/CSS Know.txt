@@ -1,0 +1,8 @@
+aspect - ratio : cho phép hộp duy trì kích thước theo tỉ lệ trong đó width + height được tính toán tự động theo tỉ lệ
+value: 
+aspect - ratio : auto | width / height;
+
+nếu thêm min-height = 0 thì tỳ lệ khung hình giữ nguyên thay vì giảm đi
+
+font-variation-setting : biến thể phông chữ 
+mix-blend-mode: xác định cách nội dung phần tử hòa trộn với nền của nó

@@ -1,0 +1,117 @@
+* Event Target:
+- addEventListener() : lắng nghe sự kiện gì đó
+- removeEventListener(): xóa sự kiện đã định nghĩa
+*Query:
+- getElementById(): Lấy phần tử bằng ID , chỉ có document mới sử dụng được method này
+- getElementsByClassName(): Lấy phần tử bằng class trả về 1 HTMLCollection các thẻ có class cần lấy
+- getElementsByTagName(): Lấy phần tử bằng tag trả về 1 HTMLCollection các thẻ có class cần lấy
+- querySelector(): Truy vấn phần tử bằng CSS Selector
+- querySelectorAll(): Truy vấn tất cả phần tủ thỏa điều kiện CSS Selector trả về 1 NodeList các phần tử thỏa đk
+* Node:
+* Traversal ( duyệt )
+- Node:
++ parentNode : trả về node cha của nó
++ childNodes : trả về Nodelist các node con
++ firstChild : trả về node con đầu tiên
++ lastChild : trả về node con cuối cùng
++ previousSibling: trả về node anh chị em liền kề đứng trước
++ nextSibling: trả về node anh chị em liền kề đứng sau
+- Element:
++ parentElement : trả về thẻ cha của nó
++ children: trả về HTMLCollection các thẻ con
++ firstElementChild: trả về thẻ con đầu tiên
++ lastElementChild: trả về thẻ con cuối cùng
++ previousElementSibling: trả về thẻ anh chị em liền kề đứng trước
++ nextElementSibling: trả về thẻ anh chị em liền kề đứng sau
+
+* Create Element ( tạo )
+
+- Chỉ được dùng document.createElement không được dùng bất cứ element nào chấm tới createElement
+
+document.createElement(): tạo thẻ mong muốn
+
+*Text:
+- textContent: 
++ Nếu dùng để trả về thì nó trả về nội dung văn bản của tất cả các phần tử ( có tính luôn cả nội dung <script></script>
+và <style></style>)
++ Nếu đặt giá trị thì nó sẽ xóa tất cả các phần tử và gán bằng nội dung mới ( thàng này được khuyên dùng )
++ Nếu đặt giá trị mà có khoảng trống hoặc khoảng cách nó sẽ render y như vậy và trên trình duyệt sẽ không hiểu
+- innerText: 
++ Nếu dùng để trả về thì nó trả về nội dung văn bản  của những phần tử con nó nhìn thấy được 
+( những phần tử không nhìn được như : trong <style></style> , <script></script> , có css display none ... )
++ Nếu đặt giá trị thì nó sẽ xóa tất cả các phần tủ gán bàng nội dung mới ( nguòi ta không khuyên dùng thằng này )
+- Nếu đặt giá trị mà có xuống dòng thì nó sẽ render thành thẻ <br>
+- innerHTML :
++ Nếu dùng để trả về thì nó trả về nội dung của phần tủ
++ Nếu dùng để trả về thì cũng xóa phần tử và đặt bằng nội dug mới . Thằng này có thể gán bằng thẻ bất kì nào ( html ,css
+, js ... )
+textContent: khi đặt nhiều dấu cách hiển thị trên browser chỉ còn 1 dấu cách , khi đặt xuống dòng sẽ không hiển thị trên browser
+innerText: khi đặt nhiều dấu cách hiển thị trên browser chỉ còn 1 dấu cách, khi đặt xuống dòng sẽ đổi thành thẻ <br>
+innerHTML: khi đặt nhiều dấu cách hiển thị trên browser chỉ còn 1 dấu cách
+khi đặt xuống dòng sẽ không hiển thị trên browser
+*Update Element: 
+*Attribute: 
+- Common attribute: sủ dụng được khi đây là các standard attribute
++ Element.id : Để get + set giá trị thuộc tính của thuộc tính id của element đó
++ Element.className: để get + set giá trị thuộc tính của thuộc tính class của element đó
++ Element.hidden: để get + set giá trị thuộc tính của thuộc tính hidden cho element đó , mặc định là false tức là nó hiện , muốn nó ẩn thì cho 
+Element.hidden = true
++ Element.title: để get + set giá trị thuộc tính của thuộc tính title cho element đó
+Đối với những thẻ như
+- <a> thì có .href,.rel
+- <img> thì có .src, .alt
+
+- Custom attribute: sử dụng cho những attribute tự định nghĩa
+
++ Element.getAttribute(name) : lấy giá trị thuộc tính của thuộc tính name
++ Element.setAttribute(name , value ) : đặt thuộc tính name có giá trị là value cho element
++ Element.hasAttribute(name): Kiểm tra attribute có tồn tại hay không
++ Element.removeAttribute(name): xóa thuộc tính name của element
++ Element.toggleAtrribute(name: nếu chưa có Attribute name thì add vào , còn có rồi thì remove Attribute name đi.
++ Element.attributes(name): cập nhật attribute name
+* Dataset
++ Element.dataset.(name) : set + get giá trị thuộc tính của attribute tiền tố data-
+Element.dataset.test : trả về giá trị thuộc tính của attribute data-test
+Element.dataset.testCustomer = "c3": đặt attribute data-test-customer = c3
+
+* Classlist
+- Element.classList.add(name) : Thêm name vào thuộc tính class
+- Element.classList.remove(name): xóa name của thuọc tính class
+- Element.classList.toggle(name) : nếu chưa có name thì add vào , có rồi thì xóa đi
+- Element.classList.replace(oldClass, newClass): thay thể oldClass = newClass
+
+* Style :
+
+background-color: Element.style.backgroundColor;
+font-size: Element.style.fontSize;
+font-weight: Element.style.fontWeight
+box-sizing: Element.style.boxSizing;
+text-align: Element.style.textAlign;
+text-transform: Element.style.textTransform
+
+* Remove : 
+
+Remove.self: Element.remove()
+removeChild() : xóa node con của nó
+
+*Clone :
+- Element.cloneNode() : sao chép tất cả các thuộc tính và giá trị thuộc tính , inline-listener (onevent nằm trong thẻ )
+nếu truyền vào true thì sẽ sao chép hết phần nội dung 
+
+type="module": nghĩa là file javascript này import file javascript khác
+
+DOM Construction : Byte => characters => Tokens => Node => DOM
+
+scrollHeight: chiều cao của tất cả các thẻ con bên trong nó + padding
+clientHeight: chiều cao của thực tế khi F12 soi vào + padding
+offsetHeight: chiều cao set cố định + padding + border 
+
+Khi set height 200px dùng overflow scroll có thể nó giảm height đi ví dụ ban đầu set 200px xong còn 184px thì 200px
+là chiều cao set cố định còn 184px là chiều cao thực tế khi F12 soi vào
+
+Event:
+
+- mouseup : là khi click vào phần tử đó nhưng thả tay ra thì trigger
+- mousedown : là khi click vào phần tử đó thì trigger ( sự kiện mouseup thì cần phải thả tay ra mới trigger, còn
+mousedown chỉ cần click vào là trigger)
+- mousemove : xảy ra khi di chuột lên phần tử

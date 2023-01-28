@@ -1,0 +1,33 @@
+javascript ma viet trong phan tu goi la javascript inline
+javascript ma viet trong <script> dat trong html goi la javascript internal
+javascript ma viet trong file.js goi la javascript external
+=> Giong css
+
+variable - bien
+bit ( 1 o nho ) 
+vung nho la gom nhieu o nho
+1byte = 8 bit
+1kb = 1024 ~ 1000 byte
+1 mb = 1000kb
+1gb = 1000mb
+var a = 7 : javascript yeu cau he dieu hanh cap phat 1 vung nho cho bien a
+co gia tri la 7
+
+alert(a) : hien thi " gia tri " cua bien a 
+Co 4 cach hien thi gia tri cua bien:
+
+- alert(a) : hien thi hop gia tri cua bien a
+- console.log(a): hien thi gia tri cua bien a trong F12 Console
+- document.write(a): viet gia tri cua bien a vao trong body
+innerHTML la truy xuat den phan noi dung cua the
+- document.getElementById("id1");
+var a5 = {masv: 1257, ten:"Teo em", gioitinh: "nam"};
+a5 co kieu du lieu doi tuong , a5 co 3 ' thuoc tinh ' khong phai gia tri 
+moi thuoc tinh co 2 phann ten thuoc tinh va gia tri thuoc tinh cach nhau boi dau :
+
+console.log(a5.masv) : Hien thi ra console gia tri cua thuoc tinh masv
+
+== : bang ve gia tri
+===: bang ve kieu du lieu va gia tri
+!=: khac nhau ve gia tri
+!==: khac nhau ve kieu du lieu hoac gia tri

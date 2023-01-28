@@ -1,0 +1,5 @@
+Event "change" chỉ xảy ra khi 
+
+trong ô input có sự thay đổi và mình ấn click ra bên ngoài hoặc ô input có sự thay đổi và mình ấn enter
+
+Event "input" : gõ 1 cái là trigger liền

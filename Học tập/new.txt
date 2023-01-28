@@ -1,0 +1,3 @@
+﻿Event delegation : Thay vì add sự kiện vào tất cả thằng con chỉ cần add sự kiện vào thằng cha
+
+.closest : tìm thằng cha gần nhất

@@ -1,0 +1,71 @@
+﻿Node package manager ( npm )
+yet another resource negotiator
+
+Overview : quản lý những cái dependencies trong project , tức là project sử dụng thư viện A , thư viện B ... thì làm sao
+quản lí được , ví dụ mình muốn add vào làm như thế nào  muốn remove làm như thế nào , muốn update làm như thế nào ? 
+
+~ : chấp nhận tất cả patch version
+^ : chấp nhận tất cả minor version
+
+file package.json: cung cấp thông tin cấu hình của project 
+devDependency : chỉ dùng cho local development , những thư viện chỉ dùng dưới máy tính của mình 
+dependency: khi build ra file cuối cùng cho production thì nó sẽ bao gồm những thư viện nào 
+
+Semantic versioning ( semver )
+Nếu mà chỉ fix bug đơn giản tăng cái patch version
+nếu có release feature nhưng không có break change thì tăng minor
+nếu có break change thì tăng major
+
+Module : những file liên kết với nhau , file này import file kia
+
+Đa phần các trình duyệt đều hiểu ESM ( EcmaScript Module)
+minify: code biến thành 1 hàng , xóa đi những space khong cần thiết
+uglify: biến tấu tên biến 
+unused code: có rất nhiều function nhưng thực tế chỉ dùng 2-3 function, nó sẽ bỏ
+những function không sử dụng
+Task Runner: Grunt, gulp 
+- cho phép bạn đinh những những cái task, tái sử dụng task
+Module Bundler: Webpack, Rollup
+- Thay vì định nghĩa những cái task , có default option sẵn chỉ cần config vào thêm
+- Code transformanation: syntax mới = > biến đổi hoặc add polyfill => để trình duyệt cũ có thể hiểu được
+- Tree shaking: bỏ đi những code mình không sử dụng . ví dụ thư viện lodash có cả 100 
+hàm , tree shaking sẽ bỏ những hàm không sử dụng
+- Hot Module replacement: replace đúng module cần thay đổi 
+
+Webpack có 4 concept chính là :
+- Entry : đưa file javascript , dựa vào đó nó sẽ biết file js này import file này , file kia , file nọ ... => build ra 
+1 cái dependency graph 
+- Output : nhờ dependencies graph tạo thành những file bundle ở thư mục nào ( có thể qui ước folder + tên file )
+- Loaders: Webpack chỉ hiểu code Javascript và JSON files nên những file react đồ nó sẽ không hiểu phải nhờ cơ chế loaders
+nó mới hiểu . vd style loaders load đc css , sass loaders load được sass
+- Plugins : có những file bundle dùng những plugin để optimize ( minify, uglify, unused code , ... )
+
+ViteJS : nó chỉ hiểu ESM
+- Dependency : những thư viện import vào project , pre-bundle đúng 1 lần
+
++ Có 1 số module CommonJS, UMD thì lúc này pre-bundle sẽ chuyển đổi về ESM để trình duyệt hiểu
++ Performance: gom những module không sử dụng vào 1 file để request 1 file 
+
+- Source code: biến đổi code JSS , react , vue ... => Javascript cho trình duyệt chạy
+
+yarn create vite js-post-ui --template vanilla
+
+
+public folder in ViteJS : muốn tạo những file con trực tiếp của dist thì cần bỏ folder public
+tại sao nhũng file trong thư mục dist/assets trong viteJS lại có hash code ? Nếu không có : ví dụ có file recipe.jpg
+- khi người dùng gửi request đầu tiên lên caching sever thì nó sẽ lên origin sever request về và cache lại , nhưng khi
+trên phía sever thay đổi nội dung bên trong recipe.jpg nhưng tên file vẫn để vậy , thì khi người dùng gửi request tiếp
+nó sẽ kiểm tra file trùng tên hết nên nó không cần lên origin sever cache lại nhưng thực chất nội dung khác nhau
+- Nên viteJS mới thêm mã hashcode , mỗi khi yarn build cho 1 mã hashcode mới khi nguòi dùng request nó thấy request khác
+tên file nên sẽ lấy origin sever request về cache lạigmai
+CDN : content delivery network : mạng lưới các caching sever trên toàn thế giới 
+
+origin sever: sever của mình . trường hợp mà user của mình nằm khắp nơi trên thế giới có phải là có chỗ gần có chỗ xa
+chỗ gần truy cập nhanh , chỗ xa truy cập lâu nên mới cần CDN 
+Cơ chế : request đầu tiên lên sever có sử dụng CDN ( phải set up thêm , có cái free , có cái 0) . thay vì rq đi trực tiếp
+lên origin sever thì nó phải đi qua caching sever gần nhất , khi đó nó sẽ xem cái request này có trên caching sever không , nếu
+chưa có thì lên origin sever request về và cache lại request đó, nếu có trong caching sever thì trả về không cần lên
+tới origin sever.
+
+khi dùng CDN đặt ra câu hỏi khi nào mình xóa cái cache đó vì khi mình deploy version mới những cache cũ không còn valid
+cần phải xóa cache cũ đi. Khi đã release version mới mà dùng cache cũ thì không hay :))	 

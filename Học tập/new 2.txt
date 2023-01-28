@@ -1,0 +1,30 @@
+Single Thread: đơn luồng tại 1 thời điểm chỉ xử lý 1 cái
+Multi Thread: Đa luồng tại 1 thời điểm thực hiện được nhiều cái có thể chia sẽ tài nguyên
+
+Javascript: single thread 
+
+Sync: đồng bộ
+Async: bất đồng bộ
+WebAPI : Khi làm việc với browset có những hàm làm sẵn
+Code async : được thực hiện sau cùng sau đoạn code hiện tại
+
+Debounce: Kiểm tra trong thời gian đợi có xảy ra event nào nũa hay không , nếu có thì nó đợi lại , nếu không thì nó thực
+thi hàm
+
+Throttle: thường đi cùng sự kiện scroll đảm bảo trong khoảng thời gian đợi , chỉ gọi tối đa 1 lần 
+
+Javascript engine: chương trình máy tính thực thi code javascript
+Engine mới đi theo Just in time Compiler: sự kết hợp tối ưu giữa Compiler + Interpreter	
+V8 : Google Chrome, Microsoft Edge 	, NodeJs
+Spider Monkey : Firefox
+JavascriptCore: Safari
+
+MemoryHeap : là nơi lưu trữ các biến có kiểu dữ liệu reference
+
+strict mode : xuất hiện từ ES5 , cho phép sử dụng code theo kiểu mới những đoạn code sẽ được nghiêm ngặt hơn về cú pháp
+
+trước khi có strict mode bị 4 lỗi như sau
+- channelName = "Front end"
+- undefined = 1
+- delete Object.prototype
+- 015 + 33 chuyển 015 sang hệ bát phân

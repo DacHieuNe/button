@@ -1,0 +1,58 @@
+Git :
+- Nơi lưu trữ source code khi mà lập trình xong
+Git flow: Lập trình viên sẽ làm ở nhánh Feature ok rồi sẽ merge code vào develope test ok rồi sang release test ok rồi
+sang master
+Hotflix : khi 1 bug phát sinh gấp ở sản phẩm chính người ta sẽ tạo nhánh hotfix lấy code từ nhánh master sau khi sửa xong
+người ta đẩy vào master và develope
+
+Pull Request(PR) : tạo 1 cái để người khác review code của mình trước khi đẩy vào nhánh nào đó
+
+GUI: giao diện
+Bash: Command
+
+mkdir: tạo thư mục 
+-p : tạo thư mục liên tiếp
+rm : xóa thư mục
+cd : chuyển thư mục
+pwd: xem mình đang đứng ở đâu
+
+Git repository: đại diện cho toàn bộ dự án , kho lưu trữ dự liệu của dự án
+- Local Repository: 
+
+git rebase -i HEAD~N ( N là số lượng commit cần gộp )
+
+git diff: cho phép theo dõi sự thay đổi trên 1 nhánh
+khi đứng ở nhánh master , mà git rebase feature thì nó sẽ lấy tất cả các commit của feature làm commit cơ sở , còn các
+commit sẽ đứng sau 
+khi đứng ở nhánh master, mà git merge feature thì nó sẽ so sánh commit chung cuối cùng khi rẽ nhánh , va lấy commit
+cuối sau khi rẽ nhánh
+git fetch : nó sẽ kéo code về để trong thư mục origin bạn muốn merge code thì dùng merge
+git pull = git fetch + git merges
+git stash : lưu lại các file đã thay đổi nhưng chưa commit để chuyển sang branch khác không bị mất 
+* Phải có file đã commit thì khi vào thay đổi file nhưng chuyển nhánh thì mới cần stash
+git tag: tạo tag + version trong những lần commit để rõ hơn về nội dung commit
+git branch -d [ tên branch cần xóa ] : đứng ngoài branch cần xóa mới xóa được
+confict trong git giống như có 2 nhánh nhưng mỗi nhánh đèu có file là php.txt, thì bạn muốn đẩy dữ liệu php.txt nhánh 2
+vào php.txt của nhánh 1 thì khi đó sẽ bị conflict ( xung đột ) 
+=> Đại khái nó sẽ bắt bạn xác nhận lại là bạn có thực sự muốn đẩy dữ liệu php.txt nhánh 2 vào php.txt nhánh 1 
+=> sau khi thay đổi phải add lại rồi commit
+git init: tạo ra repository cho dự án
+git branch: kiểm tra trong thư mục có branch nào không
+git branch [tên branch] : tạo branch mói và đứng nguyên ở branch hiện tại
+git checkout -b[tên branch mới]: tạo branch mới , chuyển qua branch mới
+git status: xem trạng thái của 1 nhánh , kiểm tra nó có thay đổi gì hay không
+git log: xem lại history thay đổi
+ Đổi tên ở local branch thì bạn dùng như sau
+- Nếu đang đứng trong branch đó 
+git branch -m <tên mới>
+- Nếu đang đứng từ nhánh khác
+git branch -m <tên cũ> <tên mới>
+2. Đối với nhánh remote
+- Xóa remote branch
+git push origin :<tên branch muốn xóa>
+- Tạo lại remote branch 
+git push --set-upstream origin <tên branch mới đã đổi tên ở trên>
+
+Khi mình dùng git commit -m "" thì khi chuyển sang những nhánh khác nó sẽ copy file đó qua nhũng nhánh khác
+đưa dữ liệu lên 1 nhánh
+ 

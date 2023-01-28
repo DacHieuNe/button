@@ -1,0 +1,10 @@
+auto fit - auto fill
+
+auto fit : lấp đầy khoảng trống
+auto fill: điền đủ số cột
+ex : width: 1360px
+
+grid-template-columns: repeat(auto-fit, minmax(200px,1fr)) : nó sẽ tìm giá trị trong khoảng [200px,1fr] và chia sao cho
+có nhiều cột nhất và width của các cột phải lớn nhất khi width của grid container là 1360px
+
+ví dụ 200px chia được 4 cột mà 280px cũng chia đc 4 cột thì nó sẽ lấy giá trị 280px 

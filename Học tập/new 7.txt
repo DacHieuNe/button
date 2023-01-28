@@ -1,0 +1,22 @@
+SQL
+
+- Tạo database : CREATE DATABASE name;
+- xóa database : DROP DATABASE name;
+- Kiểu dữ liệu : google
+- Tạo bảng : CREATE TABLE name();
+- Tạo thuộc tính từ bảng : attribute_name datatype
+- xoa bảng : DROP TABLE name;
+- xóa tất cả thuộc tính : TRUNCATE TABLE name;
+- Thêm cột mới từ 1 bảng :
+  ALTER TABLE name
+		ADD column_name data_type
+- Xóa cột từ bảng
+- Thay đổi kiểu dữ liệu của cột
+
+- INSERT INTO : thêm dữ liệu vào cột
+Ràng buộc dữ liệu SQL
+ NOT NULL : cột phải có dữ liệu
+ UNIQUE : các dư liệu trong cột phải khác nhau
+ CHECK: kiểm tra dữ liệu trong cột có thỏa mãn điều kiện hay không
+ 
+ DROP TABLE IF EXIST
